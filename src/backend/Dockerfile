@@ -19,26 +19,25 @@ RUN dotnet publish -c Release --no-restore -o /app/publish \
 # Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS final
 
-# Create non-root user
-RUN addgroup --gid 1001 -S app && \
-    adduser --uid 1001 -S app -G app
+# Create distinct non-root user (avoids base image conflicts)
+RUN addgroup --gid 1001 -S backenduser && \
+    adduser --uid 1001 -S backenduser -G backenduser
 
 # Install runtime dependencies
 RUN apk add --no-cache ca-certificates tzdata && \
     cp /usr/share/zoneinfo/UTC /etc/localtime
 
 WORKDIR /app
-RUN chown -R app:app /app
+RUN chown -R backenduser:backenduser /app
 
 # Switch to non-root
-USER app
+USER backenduser
 EXPOSE 8080
 ENV ASPNETCORE_URLS=http://+:8080
 
-# Copy app
-COPY --from=build --chown=app:app /app/publish .
+# Copy published application
+COPY --from=publish --chown=backenduser:backenduser /app/publish .
 
-# Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 1
 
