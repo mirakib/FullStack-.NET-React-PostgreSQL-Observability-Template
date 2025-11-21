@@ -7,7 +7,9 @@ RUN apk add --no-cache tini
 
 # Copy package files
 COPY src/frontend/package*.json ./
-RUN npm ci --only=production
+
+# Install ALL dependencies (including devDependencies for build)
+RUN npm ci  # Remove --only=production
 
 # Copy source and build
 COPY src/frontend/ ./
