@@ -1,5 +1,5 @@
 <div style="display: flex; align-items: center; gap: 10px;">
-  <img src="https://skillicons.dev/icons?i=dotnet,react,postgres,nginx,docker,prometheus,grafana" style="height: 40px;"/>
+  <img src="https://skillicons.dev/icons?i=dotnet,react,postgres,nginx,prometheus,grafana,docker" style="height: 40px;"/>
 </div>
 
 # FullStack .NET React PostgreSQL Observability Template
