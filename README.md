@@ -1,7 +1,11 @@
+<div style="display: flex; align-items: center; gap: 10px;">
+  <img src="https://skillicons.dev/icons?i=dotnet,react,postgres,nginx,docker,prometheus,grafana" style="height: 40px;"/>
+</div>
+
 # FullStack .NET React PostgreSQL Observability Template
 A production-grade dotnet new template that scaffolds a complete full-stack application with .NET 8 Web API, React frontend, PostgreSQL database, and Nginx reverse proxy, including turnkey monitoring stack (Prometheus, Grafana, cAdvisor, Node Exporter) with Alpine-based multistage Docker builds, security hardening, and CI/CD-ready configuration.
 
-# Features
+## Features
 - **Backend**: .NET 8 Web API with Entity Framework Core for PostgreSQL
 - **Frontend**: React application created with Create React App
 - **Database**: PostgreSQL with Docker Compose setup
@@ -9,49 +13,65 @@ A production-grade dotnet new template that scaffolds a complete full-stack appl
 - **Observability**: Integrated monitoring stack with Prometheus, Grafana, cAdvisor, and Node Exporter
 - **Dockerized**: Multistage Docker builds for optimized images
 
-# Project Structure
+## Technologies Used
+
+| Technology | Version | Purpose |
+|-------------|----------|----------|
+| **DotNet** | 8.x | Framework for building the web application |
+| **EF Core** | 8.x | Object-Relational Mapper (ORM) framework  for data access.|
+| **React** | 19.x | Frontend library for building user interfaces |
+| **PostgreSQL** | 16.x | Database for storing contact information |
+| **Nginx** | 1.2.x | Reverse proxy server |
+| **Docker** | 28.x+ | Containerization platform |
+
+
+## Project Structure
 ```
-react-postgres-nginx-template/
-├── .template.config/
-│   └── template.json
-├── src/
-│   ├── backend/
-│   │   ├── Controllers/
-│   │   │   └── ItemsController.cs
-│   │   ├── Data/
-│   │   │   └── AppDbContext.cs
-│   │   ├── Models/
-│   │   │   └── Item.cs
-│   │   ├── Dockerfile
-│   │   ├── Program.cs
-│   │   ├── appsettings.json
-│   │   └── Backend.csproj
-│   └── frontend/
-│       ├── public/
-│       ├── src/
-│       │   ├── App.jsx
-│       │   ├── main.jsx
-│       │   └── api.js
-│       ├── Dockerfile
-│       ├── nginx.conf
-│       ├── package.json
-│       └── vite.config.js
-├── monitoring/
-│   ├── prometheus.yml
-│   └── grafana/
-│       └── provisioning/
-│           ├── datasources/
-│           │   └── datasource.yml
-│           └── dashboards/
-│               └── dashboards.yml
+.
 ├── docker-compose.yml
-├── docker-compose.override.yml
-├── .dockerignore
-├── .gitignore
-└──  README.md
+├── init-db.sql
+├── monitoring
+│   ├── grafana
+│   │   └── provisioning
+│   │       ├── dashboards
+│   │       └── datasources
+│   └── prometheus.yml
+├── README.md
+└── src
+    ├── backend
+    │   ├── appsettings.json
+    │   ├── Backend.csproj
+    │   ├── Controllers
+    │   │   └── ItemsController.cs
+    │   ├── Data
+    │   │   └── AppDbContext.cs
+    │   ├── Dockerfile
+    │   ├── Models
+    │   │   └── Item.cs
+    │   └── Program.cs
+    ├── frontend
+    │   ├── Dockerfile
+    │   ├── eslint.config.js
+    │   ├── index.html
+    │   ├── nginx.conf
+    │   ├── package.json
+    │   ├── package-lock.json
+    │   ├── public
+    │   │   └── vite.svg
+    │   ├── README.md
+    │   ├── src
+    │   │   ├── api.js
+    │   │   ├── App.css
+    │   │   ├── App.jsx
+    │   │   ├── assets
+    │   │   ├── index.css
+    │   │   └── main.jsx
+    │   └── vite.config.js
+    └── package-lock.json
+
 ```
 
-# Getting Started
+## Getting Started
 1. Clone the repository:
    ```bash
    git clone https://github.com/mirakib/FullStack-.NET-React-PostgreSQL-Observability-Template.git
@@ -59,17 +79,21 @@ react-postgres-nginx-template/
    ```
 2. Build and run the application using Docker Compose:
    ```bash
-   docker-compose up -d --build
+   docker compose up -d --build
    ```
 3. Access the application at 
    
-    Application: http://localhost
-    Prometheus: http://localhost:9090
-    Grafana: http://localhost:3000 (admin/admin123)
-    cAdvisor: http://localhost:8080
-    Node Exporter: http://localhost:9100
-    PostgreSQL: localhost:5432
+    - Application: http://localhost:80
 
-# Contributing
+    - Prometheus: http://localhost:9090
+
+    - Grafana: http://localhost:3000
+    - cAdvisor: http://localhost:8080
+
+    - Node Exporter: http://localhost:9100
+
+    - PostgreSQL: http://localhost:5432
+
+## Contributing
 Contributions are welcome! Please open issues and submit pull requests for any improvements or bug fixes. 
 
