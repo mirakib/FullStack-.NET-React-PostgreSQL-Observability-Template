@@ -48,19 +48,28 @@ react-postgres-nginx-template/
 ├── docker-compose.override.yml
 ├── .dockerignore
 ├── .gitignore
-├── README.md
-└── install-template.sh
+└──  README.md
 ```
 
-
-# Accessibility
-
-Services
-
+# Getting Started
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mirakib/FullStack-.NET-React-PostgreSQL-Observability-Template.git
+   cd FullStack-.NET-React-PostgreSQL-Observability-Template
+   ```
+2. Build and run the application using Docker Compose:
+   ```bash
+   docker-compose up -d --build
+   ```
+3. Access the application at 
+   
     Application: http://localhost
     Prometheus: http://localhost:9090
     Grafana: http://localhost:3000 (admin/admin123)
     cAdvisor: http://localhost:8080
     Node Exporter: http://localhost:9100
     PostgreSQL: localhost:5432
+
+# Contributing
+Contributions are welcome! Please open issues and submit pull requests for any improvements or bug fixes. 
 
