@@ -20,7 +20,7 @@ services:
     environment:
       POSTGRES_DB: appdb
       POSTGRES_USER: appuser
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-P@ssw0rd123!}
+      POSTGRES_PASSWORD: P@ssw0rd123!
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -44,7 +44,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://+:8080
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-P@ssw0rd123!}
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: P@ssw0rd123!
     depends_on:
       postgres:
         condition: service_healthy
@@ -97,7 +98,7 @@ services:
     container_name: grafana
     environment:
       GF_SECURITY_ADMIN_USER: admin
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin123}
+      GF_SECURITY_ADMIN_PASSWORD: admin123
       GF_USERS_ALLOW_SIGN_UP: false
       GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
