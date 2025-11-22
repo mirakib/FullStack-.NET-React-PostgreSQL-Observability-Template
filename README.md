@@ -96,10 +96,10 @@ A production-grade dotnet new template that scaffolds a complete full-stack appl
 
 ## Screenshots
 Frontend Application
-![Frontend Application](./screenshots/frontend-application.png)
+![Frontend Application](./Screenshots/frontend-application.png)
 cAdvisor Metrics
-![cAdvisor Metrics](./screenshots/cadvisor-metrics.png)
+![cAdvisor Metrics](./Screenshots/cadvisor-metrics.png)
 Node Exporter Metrics
-![Node Exporter Metrics](./screenshots/node-exporter-metrics.png)
+![Node Exporter Metrics](./Screenshots/node-exporter-metrics.png)
 ## Contributing
 Contributions are welcome! Please open issues and submit pull requests for any improvements or bug fixes. 
