@@ -8,8 +8,8 @@ RUN apk add --no-cache tini
 # Copy package files
 COPY src/frontend/package*.json ./
 
-# Install ALL dependencies (including devDependencies for build)
-RUN npm ci  # Remove --only=production
+# Install dependencies
+RUN npm ci
 
 # Copy source and build
 COPY src/frontend/ ./
@@ -18,22 +18,25 @@ RUN npm run build
 # Stage 2: Serve with Nginx
 FROM nginx:1.24-alpine
 
-# Create non-root user
-RUN addgroup -g 1001 -S app && \
-    adduser -u 1001 -S app -G app && \
-    mkdir -p /var/cache/nginx && \
-    chown -R app:app /var/cache/nginx && \
-    chown -R app:app /var/log/nginx && \
-    chown -R app:app /etc/nginx/conf.d
+# Switch to root to modify permissions
+USER root
+
+# Create writable PID directory and set permissions
+RUN mkdir -p /run/nginx && \
+    chown -R nginx:nginx /run/nginx && \
+    chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /etc/nginx/conf.d && \
+    chown -R nginx:nginx /usr/share/nginx/html
 
 # Copy custom nginx config
 COPY src/frontend/nginx.conf /etc/nginx/nginx.conf
 
-# Copy built app
+# Copy built application
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Switch to non-root
-USER app
+# Switch to nginx user
+USER nginx
 EXPOSE 80
 
 # Health check
