@@ -8,11 +8,7 @@ RUN apk add --no-cache tini
 # Copy package files
 COPY src/frontend/package*.json ./
 
-# Install dependencies. Use `npm install` here instead of `npm ci` because the
-# lockfile in the repo may be out-of-sync with `package.json` (causes `npm ci`
-# to fail). `npm install` will resolve versions according to `package.json`.
-# Use `--no-audit` to avoid network calls during build and `--prefer-offline`
-# to speed up repeated builds.
+# Install dependencies. Use `npm install` here instead of `npm ci` because the package-lock.json may not be present.
 RUN npm install --no-audit --prefer-offline --no-fund
 
 # Copy source and build
